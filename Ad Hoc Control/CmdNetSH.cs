@@ -11,7 +11,7 @@ namespace Ad_Hoc_Control
             {
                 throw new System.Exception("fuuuuuuuuu");
             }
-            ProcessStartInfo setNet = new ProcessStartInfo("cmd.exe", "/c Netsh wlan set hostednetwork mode=allow ssid=\"" + name + "\" key=" + pw);
+            ProcessStartInfo setNet = new ProcessStartInfo("Netsh", "wlan set hostednetwork mode=allow ssid=\"" + name + "\" key=" + pw);
 
             setNet.WindowStyle = ProcessWindowStyle.Hidden;
             Process.Start(setNet);
@@ -19,20 +19,20 @@ namespace Ad_Hoc_Control
 
         static public void startNet()
         {
-            ProcessStartInfo startNet = new ProcessStartInfo("cmd.exe", "/c Netsh wlan start hostednetwork");
+            ProcessStartInfo startNet = new ProcessStartInfo("Netsh", "wlan start hostednetwork");
             startNet.WindowStyle = ProcessWindowStyle.Hidden;
             Process.Start(startNet);
         }
 
         static public void stopNet()
         {
-            ProcessStartInfo stopNet = new ProcessStartInfo("cmd.exe", " /c Netsh wlan stop hostednetwork");
+            ProcessStartInfo stopNet = new ProcessStartInfo("Netsh", " wlan stop hostednetwork");
             stopNet.WindowStyle = ProcessWindowStyle.Hidden;
             Process.Start(stopNet);
         }
         static public string getInfo()
         {
-            ProcessStartInfo getNetStatStart = new ProcessStartInfo("cmd.exe", "/c netsh wlan show hostednetwork");
+            ProcessStartInfo getNetStatStart = new ProcessStartInfo("Netsh", "wlan show hostednetwork");
             getNetStatStart.CreateNoWindow = true;
             getNetStatStart.UseShellExecute = false;
             getNetStatStart.RedirectStandardOutput = true;
