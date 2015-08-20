@@ -10,6 +10,7 @@ namespace Ad_Hoc_Control
         {
             InitializeComponent();
             setStatus();
+            txtName.Text = CmdNetSH.getName().Replace("\"", "");
 
         }
 
