@@ -7,7 +7,12 @@ namespace Ad_Hoc_Control
     {
         static public void setNet(string name, string pw)
         {
-            ProcessStartInfo setNet = new ProcessStartInfo("cmd.exe", "/c Netsh wlan set hostednetwork mode=allow ssid=" + name + " key=" + pw);
+            if (name.Length < 1)
+            {
+                throw new System.Exception("fuuuuuuuuu");
+            }
+            ProcessStartInfo setNet = new ProcessStartInfo("cmd.exe", "/c Netsh wlan set hostednetwork mode=allow ssid=\"" + name + "\" key=" + pw);
+
             setNet.WindowStyle = ProcessWindowStyle.Hidden;
             Process.Start(setNet);
         }
@@ -39,13 +44,13 @@ namespace Ad_Hoc_Control
             return getNetStat.StandardOutput.ReadToEnd();
         }
 
-        static private bool statusOnOff(string output)
+        static public bool statusOnOff()
         {
-            if (output.Contains("Nicht gestartet"))
+            if (getInfo().Contains("Nicht gestartet"))
             {
                 return false;
             }
-            else if (output.Contains("Gestartet"))
+            else if (getInfo().Contains("Gestartet"))
             {
                 return true;
             }
